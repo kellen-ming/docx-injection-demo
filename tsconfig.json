@@ -1,34 +1,77 @@
 {
+  // TypeScript 编译器选项
   "compilerOptions": {
-    "target": "ES2017",
+    // 编译目标：将代码编译为 ES2022 标准
+    "target": "ES2022",
+
+    // 类型库：包含 DOM、DOM 迭代器和 ESNext 的类型定义
     "lib": ["dom", "dom.iterable", "esnext"],
+
+    // 允许编译 JavaScript 文件（.js 和 .jsx）
     "allowJs": true,
+
+    // 跳过对声明文件（.d.ts）的类型检查，加快编译速度
     "skipLibCheck": true,
+
+    // 启用所有严格类型检查选项
     "strict": true,
+
+    // 不生成输出文件（Next.js 负责构建，TypeScript 只做类型检查）
     "noEmit": true,
+
+    // 改善 CommonJS 和 ES 模块之间的互操作性
     "esModuleInterop": true,
+
+    // 模块系统：使用最新的 ES 模块格式
     "module": "esnext",
+
+    // 模块解析策略：使用适合打包器（如 webpack）的解析方式
     "moduleResolution": "bundler",
+
+    // 允许导入 JSON 文件作为模块
     "resolveJsonModule": true,
+
+    // 确保每个文件可以独立编译（提高构建工具的性能）
     "isolatedModules": true,
+
+    // JSX 转换：使用 React 17+ 的新 JSX 转换（无需导入 React）
     "jsx": "react-jsx",
+
+    // 启用增量编译，保存上次编译信息以加快后续编译
     "incremental": true,
+
+    // TypeScript 插件：使用 Next.js 的 TypeScript 插件
     "plugins": [
       {
         "name": "next"
       }
     ],
+
+    // 路径别名：配置 ~/ 指向 src 目录，方便导入
     "paths": {
-      "@/*": ["./*"]
+      "~/*": ["./src/*"]
     }
   },
+
+  // 包含的文件：指定需要被 TypeScript 编译的文件
   "include": [
+    // Next.js 自动生成的类型定义文件
     "next-env.d.ts",
+    // 所有 TypeScript 文件（递归所有目录）
     "**/*.ts",
+    // 所有 TypeScript React 文件（递归所有目录）
     "**/*.tsx",
+    // Next.js 构建时生成的类型文件
     ".next/types/**/*.ts",
+    // Next.js 开发模式下的类型文件
     ".next/dev/types/**/*.ts",
+    // 所有 ES 模块 TypeScript 文件
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+
+  // 排除的文件：不进行类型检查的目录
+  "exclude": [
+    // 排除 node_modules 目录（第三方库不需要类型检查）
+    "node_modules"
+  ]
 }
